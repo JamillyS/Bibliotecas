@@ -45,9 +45,6 @@ int main() {
     int condicao = 1;
 
     while (condicao == 1){
-      //  desempilhar(&pilha_calculadora);
-
-        printf("\n");
         printf("Digite um número: ");
         scanf("%d", &numero);
         empilhar(&pilha_calculadora, numero);
