@@ -26,7 +26,7 @@ void empilhar(Pilha *pilha, int x){
 //retornar o valor espilhado
 int desempilhar(Pilha *pilha){
     if (pilha->topo == 0){
-        printf("Sua pilha está vazia");
+        printf("Sua pilha está vazia\n");
        // exit(1);
     }
     pilha->topo--;

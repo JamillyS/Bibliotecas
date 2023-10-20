@@ -1,96 +1,61 @@
 #include "libprg/libprg.h"
-#include "stdio.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 // Funções da calculadora RPN
-int calcular(Pilha *pilha, char operacao) {
+int calcular(Pilha *pilha, char condicao2) {
     //soma
-    if (operacao == '+') {
+    if (condicao2 == '+') {
         return desempilhar(pilha) + desempilhar(pilha);
 
-        //subtração
-    } else if (operacao == '-') {
+    } else if (condicao2 == '-') {
         return desempilhar(pilha) - desempilhar(pilha);
 
-        //multiplicação
-    } else if (operacao == '*') {
+    } else if (condicao2 == '*') {
         return desempilhar(pilha) * desempilhar(pilha);
 
-        //divisão
-    } else if (operacao == '/') {
+    } else if (condicao2 == '/') {
         return desempilhar(pilha) / desempilhar(pilha);
 
-        //caso contrario
     } else {
         return 0;
     }
 }
 
-int escolherAcao() {
-    int condicao;
-    printf("--------------------------------------------------------------------------------------------\n");
-    printf("Digite algum destes números para realizar a ação que você deseja:\n");
-    printf("Para sair: 0\n");
-    printf("Para realizar uma nova operação (limpar a pilha): 1\n");
-    printf("Para continuar com o resultado anterior: 2\n");
-    scanf("%d", &condicao);
-    return condicao;
-}
+//int escolherAcao() {
+//    int condicao;
+//    printf("--------------------------------------------------------------------------------------------\n");
+//    printf("O que você deseja? para sair: 0 e para continuar: 1\n");
+//    scanf("%d", &condicao);
+//    return condicao;
+//}
 
 int main() {
     Pilha pilha_calculadora;
     cria_pilha(&pilha_calculadora, 20);
 
-    int numero;
-    char operacao;
-    int condicao = 1;
+    char condicao2[20];
 
-    while (condicao == 1){
-        printf("Digite um número: ");
-        scanf("%d", &numero);
-        empilhar(&pilha_calculadora, numero);
+    printf("Se você digitar 'S' você sai da calculadora\n");
 
-        printf("Digite outro número: ");
-        scanf("%d", &numero);
-        empilhar(&pilha_calculadora, numero);
+    while (1) {
 
-        printf("Digite a operação (+, -, *, /): ");
-        scanf(" %c", &operacao);
 
-        if (operacao == '+' || operacao == '-' || operacao == '*' || operacao == '/') {
-            int resultado = calcular(&pilha_calculadora, operacao);
+        printf("Insira um número ou a operação que você deseja realizar: ");
+        scanf("%s", condicao2);
+        if (condicao2[0] == '+' || condicao2[0] == '-' || condicao2[0] == '*' || condicao2[0] == '/') {
+            int resultado = calcular(&pilha_calculadora, condicao2[0]);
             empilhar(&pilha_calculadora, resultado);
-        } else {
-            printf("Operação inválida\n");
-        }
-
-        printf("O resultado é: ");
-        imprimi_pilha(&pilha_calculadora);
-
-        condicao = escolherAcao();
-
-        while (condicao == 2) {
-
-            printf("Digite um número: ");
-            scanf("%d", &numero);
-            empilhar(&pilha_calculadora, numero);
-
-            printf("Digite a operação (+, -, *, /): ");
-            scanf(" %c", &operacao);
-
-            if (operacao == '+' || operacao == '-' || operacao == '*' || operacao == '/') {
-                int resultado = calcular(&pilha_calculadora, operacao);
-                empilhar(&pilha_calculadora, resultado);
-            } else {
-                printf("Operação inválida\n");
-            }
             printf("O resultado é: ");
             imprimi_pilha(&pilha_calculadora);
-            condicao = escolherAcao();
-
-            if (condicao == 1){
-                desempilhar(&pilha_calculadora);
-            }
+        }else if (condicao2[0] == 'S' || condicao2[0] == 's'){
+            printf("Saindo da calculadora...\n");
+            break;
+        }else {
+            empilhar(&pilha_calculadora, atoi(condicao2));
         }
+
     }
     return 0;
 }
