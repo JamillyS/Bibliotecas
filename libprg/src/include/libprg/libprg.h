@@ -1,5 +1,9 @@
 #ifndef LIBPRG_LIBPRG_H
 #define LIBPRG_LIBPRG_H
+#include "stdlib.h"
+#include "stdio.h"
+#include "stdbool.h"
+
 
 typedef struct {
     double value;
@@ -12,6 +16,7 @@ result_t sum(double a, double b);
 result_t compute(double a, double b, operation_t op);
 
 //----------------------------------------------------------------------------------------------------------------------
+//Lista
 typedef struct {
     int *valores;
     int tam_maximo;     //quantia de inteiros
@@ -29,7 +34,7 @@ void inserir_ordenada(Lista *lista, int x);
 void remove_n2(Lista *lista, int x);
 
 //----------------------------------------------------------------------------------------------------------------------
-
+//Fila
 typedef struct {
     int *valores;
     int inicio;
@@ -43,6 +48,7 @@ void enfileirar(Fila *fila, int x); //retorna codifo de erro
 void desenfileirar(Fila *fila);
 
 //----------------------------------------------------------------------------------------------------------------------
+//Pilha
 typedef struct {
     int *valores;
     int topo;
@@ -56,35 +62,21 @@ int tamanho(Pilha *pilha);
 int vazia(Pilha *pilha);
 void imprimi_pilha(Pilha *pilha);
 //----------------------------------------------------------------------------------------------------------------------
-//Lista circular encadeada (não ordenada e ordenada)
+//Lista_encadeada
+
+//a. Lista circular encadeada (não ordenada e ordenada)
 //b. Lista circular duplamente encadeada (não ordenada e ordenada)
 //c. Fila representada em uma lista encadeada
 //d. Pilha representada em uma lista encadeada
 
-
-//não é pra usar o array contunuo
-//é para usar nodos
-
-
-typedef struct {
-    int *primeiro;      //o primeiro nodo da lista
-    int *ultimo;       //o ultimo nodo da lista
-    int comprimento;   // o comprimento da lista (quantos nodos existem)
-
-} Lista_encadeada;
-
-//struct Nodo {
-//    // um dado armazenado
-//    string dado;
-//    // isto indica qual o próximo nodo da sequência
-//    Nodo * proximo;
-//};
-
-
-
-void cria_lista_encadeada();
-
-
+typedef struct{
+    int dado;
+    struct no* proximo;
+} no_t;
+void adicionar(no_t** inicio, int dado);
+no_t* buscar(no_t* inicio, int dado);
+bool remover(no_t** inicio, int dado);
+void destruir(no_t** inicio);
 
 //----------------------------------------------------------------------------------------------------------------------
 

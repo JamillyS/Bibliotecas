@@ -1,6 +1,4 @@
 #include "libprg/libprg.h"
-#include "stdlib.h"
-#include "stdio.h"
 
 void cria_lista(Lista *lista, int tam_maximo){
     lista -> valores = malloc((sizeof (int))* tam_maximo); // sizeof da o tamanho de um tipo

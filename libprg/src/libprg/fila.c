@@ -1,6 +1,4 @@
 #include "libprg/libprg.h"
-#include "stdlib.h"
-#include "stdio.h"
 
 void cria_fila(Fila *fila, int capacidade){
     fila->valores = malloc(sizeof(int) * capacidade);

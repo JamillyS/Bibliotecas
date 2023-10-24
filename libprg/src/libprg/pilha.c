@@ -1,6 +1,5 @@
 #include "libprg/libprg.h"
-#include "stdlib.h"
-#include "stdio.h"
+
 
 void cria_pilha(Pilha *pilha, int capacidade){
 //    if (pilha->valores == NULL){
