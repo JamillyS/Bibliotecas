@@ -62,23 +62,6 @@ int tamanho(Pilha *pilha);
 int vazia(Pilha *pilha);
 void imprimi_pilha(Pilha *pilha);
 //----------------------------------------------------------------------------------------------------------------------
-//Lista_encadeada
-
-//a. Lista circular encadeada (não ordenada e ordenada)
-//b. Lista circular duplamente encadeada (não ordenada e ordenada)
-//c. Fila representada em uma lista encadeada
-//d. Pilha representada em uma lista encadeada
-
-typedef struct{
-    int dado;
-    struct no* proximo;
-} no_t;
-void adicionar(no_t** inicio, int dado);
-no_t* buscar(no_t* inicio, int dado);
-bool remover(no_t** inicio, int dado);
-void destruir(no_t** inicio);
-
-//----------------------------------------------------------------------------------------------------------------------
 
 
 #endif
