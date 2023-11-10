@@ -1,4 +1,5 @@
-#include "libprg/libprg_lista_enca.h"
+#include "libprg/lista_encadeada.h"
+
 
 void adicionar(no_t** inicio, int dado){
     // Aloca memória para um novo nó
@@ -15,6 +16,23 @@ void adicionar_ordenado(no_t** inicio, int dado){
     no_t* novo = (no_t*) malloc(sizeof (no_t));
     // Define o campo 'dado' do novo nó com o valor passado como argumento
     novo->dado = dado;
+
+    no_t* atual = *inicio;
+    no_t* contagem = NULL;
+
+    while(atual != NULL){
+        if (atual->dado < dado) {
+            contagem = atual;
+        }
+        atual = atual->proximo;
+    }
+    if (contagem != NULL) {
+        novo->proximo = contagem->proximo;
+        contagem->proximo = novo;
+        return;
+    }
+    novo->proximo = *inicio;
+    *inicio = novo;
 
 }
 
@@ -36,7 +54,6 @@ no_t* buscar(no_t* inicio, int dado){
     // Se o valor não for encontrado na lista, retorna NULL para indicar que o nó não existe
     return NULL;
 }
-
 
 bool remover(no_t** inicio, int dado){
     // Inicializa um ponteiro para o nó atual a partir do início da lista
@@ -60,7 +77,6 @@ bool remover(no_t** inicio, int dado){
             // Retorna 'true' para indicar que a remoção foi bem-sucedida
             return true;
         }
-        // Atualiza o nó anterior para o nó atual
         anterior = atual;
         // Atualiza o nó atual para o próximo nó na lista
         atual = atual->proximo;
@@ -87,3 +103,10 @@ void destruir(no_t** inicio){
     *inicio = NULL;
 }
 
+void imprimirLista(no_t** inicio) {
+    no_t* atual = *inicio;
+    while(atual != NULL){
+        printf("%d ", atual->dado);
+        atual = atual->proximo;
+    }
+}

@@ -23,13 +23,6 @@ int calcular(Pilha *pilha, char condicao2) {
     }
 }
 
-//int escolherAcao() {
-//    int condicao;
-//    printf("--------------------------------------------------------------------------------------------\n");
-//    printf("O que você deseja? para sair: 0 e para continuar: 1\n");
-//    scanf("%d", &condicao);
-//    return condicao;
-//}
 
 int main() {
     Pilha pilha_calculadora;

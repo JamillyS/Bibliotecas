@@ -86,7 +86,7 @@ void remove_n2(Lista *lista, int x){
 
 }
 
-
+//
 //void inserir_ordenada(Lista *lista, int x){
 //    inserir_nao_ordenada(lista, x);
 //    int valor_anterior= 0;
@@ -107,7 +107,8 @@ void remove_n2(Lista *lista, int x){
 //            posicao_salva = i+1;
 //
 //            break;
-//        }x == lista->n_elementos[i]
+//        }
+//       // x == lista->n_elementos[i];
 //    }
 //
 //    // Cria uma lista temporária para guardar todos os valores restantes da lista principal
@@ -128,5 +129,5 @@ void remove_n2(Lista *lista, int x){
 //    }
 //}
 //
-
-
+//
+//

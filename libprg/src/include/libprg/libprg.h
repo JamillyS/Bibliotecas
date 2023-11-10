@@ -26,7 +26,7 @@ typedef struct {
 void cria_lista(Lista *lista, int tam_maximo);
 void imprime_lista(Lista *lista);
 int busca_linear(Lista *lista, int x);
-void inserir_nao_ordenada(Lista *lista, int x);
+//void inserir_nao_ordenada(Lista *lista, int x);
 void remove_n(Lista *lista, int x);
 
 void busca_binaria(Lista *lista, int x, int alvo);
@@ -46,6 +46,7 @@ void cria_fila(Fila *fila, int capacidade);
 void imprimi_fila(Fila *fila);
 void enfileirar(Fila *fila, int x); //retorna codifo de erro
 void desenfileirar(Fila *fila);
+void inserir_ordenada(Lista *lista, int x);
 
 //----------------------------------------------------------------------------------------------------------------------
 //Pilha
