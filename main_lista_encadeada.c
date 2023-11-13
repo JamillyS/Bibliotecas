@@ -1,20 +1,24 @@
 ////#include "libprg/libprg.h"
-//#include "libprg/lista_encadeada.h"
-//#include "stdlib.h"
-//#include "stdio.h"
-////
-//int main(){
+#include "libprg/lista_encadeada.h"
+#include "stdlib.h"
+#include "stdio.h"
 //
-//    no_t* inicio = NULL;
-//
-//    adicionar(&inicio, 40);
-//    adicionar_ordenado(&inicio, 20);
-//    adicionar_ordenado(&inicio, 30);
-//    adicionar_ordenado(&inicio, 0);
-//    imprimirLista(&inicio);
-//
-//    return 0;
-//}
+int main(){
+
+    no_t* inicio = NULL;
+
+    adicionar_ordenado(&inicio, 40);
+    adicionar_ordenado(&inicio, 20);
+    adicionar_ordenado(&inicio, 2);
+    adicionar_ordenado(&inicio, 30);
+    adicionar_ordenado(&inicio, 50);
+    adicionar_ordenado(&inicio, -1);
+    adicionar_ordenado(&inicio, 15);
+    adicionar_ordenado(&inicio, 0);
+    imprimirLista(&inicio);
+
+    return 0;
+}
 //
 //
 //////----------------------------------------------------------------------------------------------------------------------
@@ -71,3 +75,6 @@
 //////    imprime_lista(&minha_lista);
 //////    return 0;
 //////}
+
+
+//deixar um .h para cada biblioteca

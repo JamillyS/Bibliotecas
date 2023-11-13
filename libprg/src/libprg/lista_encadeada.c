@@ -1,6 +1,5 @@
 #include "libprg/lista_encadeada.h"
 
-
 void adicionar(no_t** inicio, int dado){
     // Aloca memória para um novo nó
     no_t* novo = (no_t*) malloc(sizeof (no_t));
@@ -11,29 +10,38 @@ void adicionar(no_t** inicio, int dado){
     // Atualiza o início da lista para apontar para o novo nó
     *inicio = novo;
 }
+
 void adicionar_ordenado(no_t** inicio, int dado){
     // Aloca memória para um novo nó
     no_t* novo = (no_t*) malloc(sizeof (no_t));
-    // Define o campo 'dado' do novo nó com o valor passado como argumento
-    novo->dado = dado;
-
+   // novo->dado = dado;
+    // Inicializa um ponteiro para o nó anterior ao novo
+    no_t* anterior = NULL;
     no_t* atual = *inicio;
-    no_t* contagem = NULL;
 
-    while(atual != NULL){
-        if (atual->dado < dado) {
-            contagem = atual;
-        }
-        atual = atual->proximo;
-    }
-    if (contagem != NULL) {
-        novo->proximo = contagem->proximo;
-        contagem->proximo = novo;
+    // Se a lista estiver vazia, o novo nó é o primeiro
+    if (*inicio == NULL){
+        novo->proximo = NULL;
+        *inicio = novo;
         return;
     }
-    novo->proximo = *inicio;
-    *inicio = novo;
 
+    // Percorre a lista até encontrar um nó com dado maior ou igual ao novo
+    while(atual != NULL && atual->dado < novo->dado){
+        anterior = atual;
+        atual = atual->proximo;
+    }
+
+    // Se o nó anterior for NULL, o novo nó é o primeiro
+    if (anterior == NULL){
+        novo->proximo = *inicio;
+        *inicio = novo;
+    }
+        // Caso contrário, o novo nó é inserido após o nó anterior
+    else{
+        novo->proximo = anterior->proximo;
+        anterior->proximo = novo;
+    }
 }
 
 no_t* buscar(no_t* inicio, int dado){

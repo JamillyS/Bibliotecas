@@ -1,4 +1,4 @@
-#include "libprg/libprg.h"
+#include "libprg/pilha.h"
 
 
 void cria_pilha(Pilha *pilha, int capacidade){

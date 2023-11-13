@@ -5,6 +5,6 @@ set(CMAKE_C_STANDARD 11)
 
 add_subdirectory(libprg)
 
-add_executable(untitled main.c calculadora.c)
+add_executable(untitled main_lista_encadeada.c)
 
 target_link_libraries(untitled PUBLIC libprg)

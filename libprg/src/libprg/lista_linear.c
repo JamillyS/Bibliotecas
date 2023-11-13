@@ -1,4 +1,4 @@
-#include "libprg/libprg.h"
+#include "libprg/lista_linear.h"
 
 void cria_lista(Lista *lista, int tam_maximo){
     lista -> valores = malloc((sizeof (int))* tam_maximo); // sizeof da o tamanho de um tipo
@@ -38,9 +38,9 @@ void inserir_nao_ordenada(Lista *lista, int x){
 
     // Percorro até o ultimo elemento da lista(que é NULL, logo está vazia)
     int i = lista->n_elementos - 1;
-    while (lista->valores[i] != NULL){
-        i--;
-    }
+    //while (lista->valores[i] != NULL){
+      //  i--;
+    //}
     // Insere o novo elemento após o último elemento
     lista->valores[lista->n_elementos] = x;
     lista->n_elementos++;

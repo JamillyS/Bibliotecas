@@ -15,9 +15,11 @@ add_library(libprg
         src/libprg/lista_linear.c
         src/libprg/fila.c
         src/libprg/pilha.c
-         ../calculadora.c
         src/libprg/lista_encadeada.c
         src/libprg/main_lista.c
+        src/include/libprg/pilha.h
+        src/include/libprg/fila.h
+        src/include/libprg/lista_linear.h
 )
 target_sources(libprg PUBLIC ${SOURCES})
 target_include_directories(libprg PUBLIC ${CMAKE_CURRENT_LIST_DIR}/src/include)
