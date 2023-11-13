@@ -7,14 +7,20 @@ int main(){
 
     no_t* inicio = NULL;
 
-    adicionar_ordenado(&inicio, 40);
-    adicionar_ordenado(&inicio, 20);
+//    adicionar(&inicio, 1);
+//    adicionar(&inicio, 2);
+//    adicionar(&inicio, 3);
     adicionar_ordenado(&inicio, 2);
-    adicionar_ordenado(&inicio, 30);
-    adicionar_ordenado(&inicio, 50);
+    adicionar_ordenado(&inicio, 4);
     adicionar_ordenado(&inicio, -1);
-    adicionar_ordenado(&inicio, 15);
-    adicionar_ordenado(&inicio, 0);
+//    adicionar_ordenado(&inicio, 40);
+//    adicionar_ordenado(&inicio, 20);
+//    adicionar_ordenado(&inicio, 2);
+//    adicionar_ordenado(&inicio, 30);
+//    adicionar_ordenado(&inicio, 50);
+//    adicionar_ordenado(&inicio, -1);
+//    adicionar_ordenado(&inicio, 15);
+//    adicionar_ordenado(&inicio, 0);
     imprimirLista(&inicio);
 
     return 0;

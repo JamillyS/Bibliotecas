@@ -12,26 +12,24 @@ void adicionar(no_t** inicio, int dado){
 }
 
 void adicionar_ordenado(no_t** inicio, int dado){
-    // Aloca memória para um novo nó
+    //Aloca memória para um novo nó
     no_t* novo = (no_t*) malloc(sizeof (no_t));
-   // novo->dado = dado;
+    novo->dado = dado;
     // Inicializa um ponteiro para o nó anterior ao novo
     no_t* anterior = NULL;
     no_t* atual = *inicio;
 
-    // Se a lista estiver vazia, o novo nó é o primeiro
+//    // Se a lista estiver vazia, o novo nó é o primeiro
     if (*inicio == NULL){
         novo->proximo = NULL;
         *inicio = novo;
         return;
-    }
-
-    // Percorre a lista até encontrar um nó com dado maior ou igual ao novo
+   }
+   // Percorre a lista até encontrar um nó com dado maior ou igual ao novo
     while(atual != NULL && atual->dado < novo->dado){
-        anterior = atual;
+       anterior = atual;
         atual = atual->proximo;
     }
-
     // Se o nó anterior for NULL, o novo nó é o primeiro
     if (anterior == NULL){
         novo->proximo = *inicio;
@@ -43,6 +41,7 @@ void adicionar_ordenado(no_t** inicio, int dado){
         anterior->proximo = novo;
     }
 }
+
 
 no_t* buscar(no_t* inicio, int dado){
     no_t* atual = inicio;  // Inicializa um ponteiro para o nó atual a partir do início da lista

@@ -4,13 +4,6 @@
 #include "stdio.h"
 #include "stdbool.h"
 
-//Lista_encadeada
-
-//a. Lista circular encadeada (não ordenada e ordenada)
-//b. Lista circular duplamente encadeada (não ordenada e ordenada)
-//c. Fila representada em uma lista encadeada
-//d. Pilha representada em uma lista encadeada
-
 typedef struct{
     int dado;
     struct no* proximo;
