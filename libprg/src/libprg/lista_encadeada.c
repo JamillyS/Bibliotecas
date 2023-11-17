@@ -118,6 +118,8 @@ void imprimirLista(no_t** inicio) {
     }
 }
 
+//O valor de retorno de strcmp é 0 se as duas strings forem iguais, menor que 0 se str1 for menor que str2 e maior que
+// 0 se str1 for maior que str2. Nenhuma outra suposição deve ser feita sobre o valor retornado por strcmp.
 void adicionar_ordenado_usu(no_t2** lista, no_t2* novo) {
     no_t2* atual;
 
@@ -136,4 +138,22 @@ void adicionar_ordenado_usu(no_t2** lista, no_t2* novo) {
         novo->proximo = atual->proximo;
         atual->proximo = novo;
     }
+}
+
+void destruir2(no_t2** inicio){
+    // Inicializa um ponteiro para o nó atual a partir do início da lista
+    no_t2* atual = *inicio;
+    // Declara um ponteiro para o próximo nó
+    no_t2* prox;
+    // Entra em um loop para percorrer a lista
+    while(atual != NULL){
+        // Salva o próximo nó na variável 'prox'
+        prox = atual->proximo;
+        // Libera a memória alocada para o nó atual
+        free(atual);
+        // Atualiza o nó atual para o próximo nó na lista
+        atual = prox;
+    }
+    // Define o início da lista como nulo, indicando que a lista está vazia
+    *inicio = NULL;
 }
