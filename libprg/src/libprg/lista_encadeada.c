@@ -141,19 +141,21 @@ void adicionar_ordenado_usu(no_t2** lista, no_t2* novo) {
 }
 
 void destruir_login_senha(no_t2** inicio){
-    // Inicializa um ponteiro para o nó atual a partir do início da lista
-    no_t2* atual = *inicio;
-    // Declara um ponteiro para o próximo nó
-    no_t2* prox;
-    // Entra em um loop para percorrer a lista
-    while(atual != NULL){
-        // Salva o próximo nó na variável 'prox'
-        prox = atual->proximo;
-        // Libera a memória alocada para o nó atual
-        free(atual);
-        // Atualiza o nó atual para o próximo nó na lista
-        atual = prox;
+    //inicializo o ponteiro para o inicio da lista
+    no_t2* atual2 = *inicio;
+
+    //Uso outro ponteiro para apontar para o próximo nó
+    no_t2* prox2;
+
+    //Enquanto minha lista não estiver vazia
+    while(atual2 != NULL){
+        //Salvo a príxima posição na minha lista
+        prox2 = atual2->proximo;
+        //Apago a posição anterior
+        free(atual2);
+        //Informo que prox2 é a posição atual
+        atual2 = prox2;
     }
-    // Define o início da lista como nulo, indicando que a lista está vazia
+    //Início é nulo, apenas quando a lista ficar vazia
     *inicio = NULL;
 }
