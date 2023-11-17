@@ -35,7 +35,7 @@ void adicionar_ordenado(no_t** inicio, int dado){
         novo->proximo = *inicio;
         *inicio = novo;
     }
-        // Caso contrário, o novo nó é inserido após o nó anterior
+    //Caso contrário, o novo nó é inserido após o nó anterior
     else{
         novo->proximo = anterior->proximo;
         anterior->proximo = novo;
@@ -115,5 +115,25 @@ void imprimirLista(no_t** inicio) {
     while(atual != NULL){
         printf("%d ", atual->dado);
         atual = atual->proximo;
+    }
+}
+
+void adicionar_ordenado_usu(no_t2** lista, no_t2* novo) {
+    no_t2* atual;
+
+    // Se a lista estiver vazia ou o novo nodo deve ser o primeiro
+    if (*lista == NULL || strcmp((*lista)->usuario.login, novo->usuario.login) > 0) {
+        novo->proximo = *lista;
+        *lista = novo;
+    } else {
+        // Encontrar o local adequado para inserir o novo nodo
+        atual = *lista;
+        while (atual->proximo != NULL && strcmp(atual->proximo->usuario.login, novo->usuario.login) < 0) {
+            atual = atual->proximo;
+        }
+
+        // Inserir o novo nodo na posição correta
+        novo->proximo = atual->proximo;
+        atual->proximo = novo;
     }
 }
