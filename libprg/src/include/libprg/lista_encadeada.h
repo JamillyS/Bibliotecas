@@ -40,7 +40,7 @@ typedef struct no{
 } no_t2;
 
 void adicionar_ordenado_usu(no_t2** lista, no_t2* novo);
-void destruir2(no_t2** inicio);
+void destruir_login_senha(no_t2** inicio);
 
 #endif
 
