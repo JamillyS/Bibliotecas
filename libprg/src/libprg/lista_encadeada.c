@@ -1,13 +1,13 @@
 #include "libprg/lista_encadeada.h"
 
 void adicionar(no_t** inicio, int dado){
-    // Aloca memória para um novo nó
+    //Aloco memória para um novo nó
     no_t* novo = (no_t*) malloc(sizeof (no_t));
-    // Define o campo 'dado' do novo nó com o valor passado como argumento
+    //Defino "dado" do novo nó
     novo->dado = dado;
-    // O novo nó aponta para o início da lista
+    //O novo nó aponta para o início da lista
     novo->proximo = *inicio;
-    // Atualiza o início da lista para apontar para o novo nó
+    //Atualizo o início da lista para apontar para o novo nó
     *inicio = novo;
 }
 
@@ -19,13 +19,13 @@ void adicionar_ordenado(no_t** inicio, int dado){
     no_t* anterior = NULL;
     no_t* atual = *inicio;
 
-//    // Se a lista estiver vazia, o novo nó é o primeiro
+    //Se a lista estiver vazia, o novo nó é o primeiro
     if (*inicio == NULL){
         novo->proximo = NULL;
         *inicio = novo;
         return;
    }
-   // Percorre a lista até encontrar um nó com dado maior ou igual ao novo
+   //Percorro a lista até encontrar um nó com dado maior ou igual ao novo
     while(atual != NULL && atual->dado < novo->dado){
        anterior = atual;
         atual = atual->proximo;
@@ -42,7 +42,6 @@ void adicionar_ordenado(no_t** inicio, int dado){
     }
 }
 
-
 no_t* buscar(no_t* inicio, int dado){
     no_t* atual = inicio;  // Inicializa um ponteiro para o nó atual a partir do início da lista
 
@@ -58,55 +57,65 @@ no_t* buscar(no_t* inicio, int dado){
         }
     }
 
-    // Se o valor não for encontrado na lista, retorna NULL para indicar que o nó não existe
     return NULL;
 }
 
 bool remover(no_t** inicio, int dado){
-    // Inicializa um ponteiro para o nó atual a partir do início da lista
+    //Inicializo o ponteiro para o nó no início da lista
     no_t* atual = *inicio;
-    // Inicializa um ponteiro para o nó anterior como nulo
+
+    //Inicializo um ponteiro para o nó anterior como nulo
     no_t* anterior = NULL;
-    // Entra em um loop para percorrer a lista
+
+    //Enquanto a lista encadeada não estiver vazia
     while(atual != NULL){
-        // Verifica se o valor do campo 'dado' do nó atual é igual ao valor fornecido
+
+        //Verifica se o valor de "dado" do nó atual é igual ao valor fornecido
         if (atual->dado == dado){
-            // Se o nó atual for o primeiro nó da lista
+
+            //Se o nó atual for o primeiro nó da lista
             if (anterior == NULL) {
-                // Atualiza o início da lista para apontar para o próximo nó
+
+                //Atualizo o início da lista e aponto para o próximo nó
                 *inicio = atual->proximo;
+
             } else {
-                // Se não for o primeiro nó, atualiza o ponteiro 'proximo' do nó anterior
+                //Se não for o primeiro nó, atualiza o ponteiro 'proximo' do nó anterior
                 anterior->proximo = atual->proximo;
             }
-            // Libera a memória alocada para o nó atual
+
+            //Libero a memória alocada para o nó atual
             free(atual);
-            // Retorna 'true' para indicar que a remoção foi bem-sucedida
+
             return true;
         }
         anterior = atual;
-        // Atualiza o nó atual para o próximo nó na lista
+
+        //Atualizo o nó atual para o próximo nó na lista
         atual = atual->proximo;
     }
-    // Retorna 'false' se o valor não foi encontrado na lista
     return false;
 }
 
 void destruir(no_t** inicio){
-    // Inicializa um ponteiro para o nó atual a partir do início da lista
+    //Inicializo o ponteiro para o nó no início da lista
     no_t* atual = *inicio;
-    // Declara um ponteiro para o próximo nó
+
+    //Declaro o ponteiro para o próximo nó
     no_t* prox;
-    // Entra em um loop para percorrer a lista
+
+    //Enquanto a lista encadeada não estiver vazia
     while(atual != NULL){
-        // Salva o próximo nó na variável 'prox'
+
+        //Salvo o próximo nó na variável 'prox'
         prox = atual->proximo;
-        // Libera a memória alocada para o nó atual
+
+        //Libero a memória alocada para o nó atual
         free(atual);
-        // Atualiza o nó atual para o próximo nó na lista
+
+        //Atualizo o nó atual para o próximo nó na lista
         atual = prox;
     }
-    // Define o início da lista como nulo, indicando que a lista está vazia
     *inicio = NULL;
 }
 
@@ -123,18 +132,18 @@ void imprimirLista(no_t** inicio) {
 void adicionar_ordenado_usu(no_t2** lista, no_t2* novo) {
     no_t2* atual;
 
-    // Se a lista estiver vazia ou o novo nodo deve ser o primeiro
+    //Se a lista estiver vazia ou o novo nodo deve ser o primeiro
     if (*lista == NULL || strcmp((*lista)->usuario.login, novo->usuario.login) > 0) {
         novo->proximo = *lista;
         *lista = novo;
     } else {
-        // Encontrar o local adequado para inserir o novo nodo
+        //Encontro o local adequado para inserir o novo nodo
         atual = *lista;
         while (atual->proximo != NULL && strcmp(atual->proximo->usuario.login, novo->usuario.login) < 0) {
             atual = atual->proximo;
         }
 
-        // Inserir o novo nodo na posição correta
+        //Insero o novo nodo na posição correta
         novo->proximo = atual->proximo;
         atual->proximo = novo;
     }
@@ -151,11 +160,12 @@ void destruir_login_senha(no_t2** inicio){
     while(atual2 != NULL){
         //Salvo a príxima posição na minha lista
         prox2 = atual2->proximo;
+
         //Apago a posição anterior
         free(atual2);
+
         //Informo que prox2 é a posição atual
         atual2 = prox2;
     }
-    //Início é nulo, apenas quando a lista ficar vazia
     *inicio = NULL;
 }
