@@ -24,10 +24,10 @@ void adicionar_ordenado(no_t** inicio, int dado){
         novo->proximo = NULL;
         *inicio = novo;
         return;
-   }
-   //Percorro a lista até encontrar um nó com dado maior ou igual ao novo
+    }
+    //Percorro a lista até encontrar um nó com dado maior ou igual ao novo
     while(atual != NULL && atual->dado < novo->dado){
-       anterior = atual;
+        anterior = atual;
         atual = atual->proximo;
     }
     // Se o nó anterior for NULL, o novo nó é o primeiro
@@ -35,7 +35,7 @@ void adicionar_ordenado(no_t** inicio, int dado){
         novo->proximo = *inicio;
         *inicio = novo;
     }
-    //Caso contrário, o novo nó é inserido após o nó anterior
+        //Caso contrário, o novo nó é inserido após o nó anterior
     else{
         novo->proximo = anterior->proximo;
         anterior->proximo = novo;
@@ -126,6 +126,8 @@ void imprimirLista(no_t** inicio) {
         atual = atual->proximo;
     }
 }
+
+//----------------------------------------------------------------------------------------------------------------------
 
 //O valor de retorno de strcmp é 0 se as duas strings forem iguais, menor que 0 se str1 for menor que str2 e maior que
 // 0 se str1 for maior que str2. Nenhuma outra suposição deve ser feita sobre o valor retornado por strcmp.
