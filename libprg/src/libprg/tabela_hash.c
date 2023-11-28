@@ -21,52 +21,56 @@ dicionario_t *criar_dicionario(int m) {
         return NULL;
     }
     // Verifica se o vetor foi alocado com o valor `NULL`. Se foi, a função atribui `NULL` a cada elemento do vetor.
-    for (int i = 0; i < m; ++i) {
+    for (int i = 0; i < m; i++) {
         d->vetor[i] = NULL;
     }
     return d;
 }
 
 void destruir_pessoa(pessoa_t *pessoa) {
-    if (pessoa->cpf != NULL) {
-        free(pessoa->cpf);
-    }if (pessoa->nome != NULL) {
-        free(pessoa->nome);
-    }if (pessoa->email != NULL) {
-        free(pessoa->email);
-    }
     free(pessoa);
 }
 
+
 void destruir_no(no_t *no) {
     if (no != NULL) {
+        if(no->prox != NULL){
+            destruir_no(no->prox);
+        }
         free(no->chave);
         destruir_pessoa(no->valor);
         free(no);
+    }else{
+        return;
     }
 }
 
-//implementada
 void destruir_dicionario(dicionario_t *d) {
     if (d != NULL) {
-        for (int i = 0; i < d->tamanho; ++i) {
+        for (int i = 0; i < d->tamanho; i++) {
             no_t *primeiro_no = d->vetor[i];
 
-            //percorro a lista encadeada e libera cada nó
-            while (primeiro_no != NULL) {
-                no_t *no_temp = primeiro_no->prox;
+            // Percorre a lista encadeada e libera cada nó
+           // while (primeiro_no != NULL) {
+                //no_t *no_temp = primeiro_no->prox;
 
-                //libera a memória alocada para o nó
-                free(primeiro_no);
+                // Libera a memória alocada para o nó
+                destruir_no(primeiro_no);
 
-                //atualizo o ponteiro para o próximo nó
-                primeiro_no = no_temp;
-            }
+                // Atualiza o ponteiro para o próximo nó
+               // primeiro_no = no_temp;
         }
+
+        // Libera a memória alocada para o vetor
         free(d->vetor);
+
+        // Libera a memória alocada para o dicionário
         free(d);
+
+
     }
 }
+
 
 // método por divisão com chave alfanumérica, a função que irá definir o indice
 int hash(const char *chave, int m) {
@@ -85,8 +89,7 @@ void adicionar_na_lista_encadeada(no_t** inicio, char* chave, pessoa_t* valor) {
     *inicio = novo;
 }
 
-//implementada
-//acho que aqui que tá errada, a questão do vazamento
+
 bool inserir(dicionario_t* d, char* chave, pessoa_t* valor) {
     int indice = hash(chave, d->tamanho);
 
@@ -97,8 +100,8 @@ bool inserir(dicionario_t* d, char* chave, pessoa_t* valor) {
     }
     // Faz uma cópia da chave usando strdup para evitar problemas com o ponteiro
     //aponta um ponteiro para uma nova string
-//    no->chave = strdup(chave);
-    no->chave = chave;
+    no->chave = strdup(chave);
+    //no->chave = chave;
     if (no->chave == NULL) {
         free(no);
         return false;
@@ -114,30 +117,45 @@ bool inserir(dicionario_t* d, char* chave, pessoa_t* valor) {
         d->vetor[indice] = no;
     } else {
         // Se houver colisão, adiciona o novo nó à lista encadeada
-        adicionar_na_lista_encadeada(&d->vetor[indice], chave, valor);
+        //adicionar_na_lista_encadeada(&d->vetor[indice], chave, valor);
+
+        no->prox = d->vetor[indice];
+        //aponta pra novo nó
+        d->vetor[indice] = no;
     }
+
     return true;
 }
 
+pessoa_t *buscar_th(dicionario_t *d, char *chave) {
+    //calcula o índice da chave na tabela hash
+    int indice = hash(chave, d->tamanho);
+    //percorre a lista encadeada no índice
+    no_t *no = d->vetor[indice];
+    while (no != NULL) {
+        //se a chave for igual, retorna o valor
+        if (strcmp(no->chave, chave) == 0) {
+            printf("O usuário %s, está na base de dados \n", no->valor->nome);
+            return no->valor;
 
-pessoa_t *buscar(dicionario_t *d, char *chave) {
-int indice = hash(chave, d->tamanho);
-    if (d->vetor[indice] != NULL) {
-    // TODO Abaixo só pega o primeiro elemento da lista encadeada
-    // é necessário percorrer a lista encadeada e não apenas o primeiro
-    // elemento
-        if (strcmp(d->vetor[indice]->chave, chave) == 0) {
-            return d->vetor[indice]->valor;
         }
+        //avanca para o próximo nó
+        no = no->prox;
     }
+    //chave não encontrada
     return NULL;
 }
 
+
 void imprimir_pessoa(dicionario_t *d, char *chave) {
-    pessoa_t *p = buscar(d, chave);
+    pessoa_t *p = buscar_th(d, chave);
     if (p != NULL) {
-        printf("CPF: %s = %s\tNome: %s\tEmail: %s\n", p->cpf, chave, p->nome, p->email);
+        printf("Login: %s = %s\tSenha: %s\tNome: %s\n", p->login, chave, p->senha, p->nome);
     }else {
-        printf("Pessoa com CPF %s não encontrada\n", chave);
+        printf("Login %s não encontrada\n", chave);
     }
 }
+
+
+//criei dois nó,
+//já to apontando minha tabela hash
