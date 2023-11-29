@@ -21,7 +21,7 @@ add_library(libprg
         src/include/libprg/lista_linear.h
         src/libprg/tabela_hash.c
         src/include/libprg/tabela_hash.h
-        src/libprg/lista_encadeda_main.c
+        src/libprg/test_lista_encadeada.c
 )
 target_sources(libprg PUBLIC ${SOURCES})
 target_include_directories(libprg PUBLIC ${CMAKE_CURRENT_LIST_DIR}/src/include)

@@ -16,9 +16,10 @@ void separa_usu(FILE *arquivo, pessoa_t *usuario) {
     //Faço a leitura do nome
     fgets(usuario->nome, sizeof(usuario->nome), arquivo);
     fgetc(arquivo);
+
+    //Ao debugar foi notado que fgets voltava uma posição para trás
+    //coloquei um fgetc logo após, para resolver isto, pois ele avança uma posição
 }
-
-
 
 int main(int argc, char **argv) {
     FILE *arquivo;
@@ -56,24 +57,26 @@ int main(int argc, char **argv) {
 
     }
 
-    imprimir_pessoa(dicionario, usuario);
-    // imprimir_pessoa(dicionario, "f.pingo");
-    imprimir_pessoa(dicionario, "g.enidi");
-    imprimir_pessoa(dicionario, "r.victoru");
-    imprimir_pessoa(dicionario, "a.simome");
-    imprimir_pessoa(dicionario, "m.arani");
+    //buscar_th(dicionario, usuario);
 
-    printf("\n");
 
-    // buscar_th(dicionario, "f.pingo");
-     buscar_th(dicionario, usuario);
-    buscar_th(dicionario, "g.enidi");
-    buscar_th(dicionario, "r.victoru");
-    buscar_th(dicionario, "a.simome");
-    buscar_th(dicionario, "m.arani");
+//    imprimir_pessoa(dicionario, usuario);
+//    imprimir_pessoa(dicionario, "f.pingo");
+//    imprimir_pessoa(dicionario, "g.enidi");
+//    imprimir_pessoa(dicionario, "r.victoru");
+//    imprimir_pessoa(dicionario, "a.simome");
+//    imprimir_pessoa(dicionario, "m.arani");
+
+//    buscar_th(dicionario, "f.pingo");
+//    buscar_th(dicionario, usuario);
+//    buscar_th(dicionario, "g.enidi");
+//    buscar_th(dicionario, "r.victoru");
+//    buscar_th(dicionario, "a.simome");
+//    buscar_th(dicionario, "m.arani");
+
+    verificar_login_senha(dicionario, usuario, senha);
 
     destruir_dicionario(dicionario);
-
     fclose(arquivo);
 
     return 0;

@@ -6,9 +6,6 @@
 #include <string.h>
 
 typedef struct {
-//    char *cpf;
-//    char *nome;
-//    char *email;
 
     char login[10];
     char senha[10];
@@ -38,7 +35,12 @@ pessoa_t *buscar_th(dicionario_t *d, char *chave);
 void imprimir_pessoa(dicionario_t *d, char *chave);
 char * copia_string(char *s);
 
-void adicionar_na_lista_encadeada(no_t** inicio, char* chave, pessoa_t* valor);
+int verificar_login_senha(dicionario_t *dicionario, char *login, char *senha);
+
+bool inserir_ordenado(dicionario_t* d, char* chave, pessoa_t* valor);
+
+void imprimir_logins(dicionario_t* d);
+
 
 
 #endif
