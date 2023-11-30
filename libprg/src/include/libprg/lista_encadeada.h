@@ -41,6 +41,7 @@ typedef struct no{
 
 void adicionar_ordenado_usu(no_t2** lista, no_t2* novo);
 void destruir_login_senha(no_t2** inicio);
+no_t2* buscar_usuario(no_t2* lista, const char* login);
 
 #endif
 

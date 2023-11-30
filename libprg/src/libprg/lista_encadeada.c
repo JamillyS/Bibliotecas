@@ -171,3 +171,20 @@ void destruir_login_senha(no_t2** inicio){
     }
     *inicio = NULL;
 }
+
+no_t2* buscar_usuario(no_t2* lista, const char* login) {
+    no_t2* atual = lista;
+
+    while (atual != NULL) {
+        if (strcmp(atual->usuario.login, login) == 0) {
+            // Usuário encontrado
+            printf("Olá %s \n", atual->usuario.nome );
+            return atual;
+        }
+
+        atual = atual->proximo;
+    }
+    printf("Usuário não encontado\n");
+    // Usuário não encontrado
+    return NULL;
+}
