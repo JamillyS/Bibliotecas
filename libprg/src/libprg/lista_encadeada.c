@@ -179,13 +179,13 @@ no_t2* buscar_usuario(no_t2* lista, const char* login, const char* senha) {
         if (strcmp(atual->usuario.login, login) == 0) {
             if (strcmp(atual->usuario.senha, senha) == 0) {
                 // Usuário encontrado
-                printf("Olá %s \n", atual->usuario.nome);
+                printf("Usuário e senha corretos\n Olá %s \n", atual->usuario.nome);
                 return atual;
             }
         }
         atual = atual->proximo;
     }
-    printf("Usuário não encontado\n");
+    printf("Usuário ou senha incorretos\n");
     // Usuário não encontrado
     return NULL;
 }
